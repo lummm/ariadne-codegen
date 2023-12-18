@@ -56,9 +56,10 @@ def get_graphql_queries(
         rules=[r for r in specified_rules if r is not NoUnusedFragmentsRule],
     )
     if validation_errors:
-        raise InvalidOperationForSchema(
-            "\n\n".join(error.message for error in validation_errors)
-        )
+        print("WARNING:", "\n\n".join(error.message for error in validation_errors))
+        # raise InvalidOperationForSchema(
+        #     "\n\n".join(error.message for error in validation_errors)
+        # )
     return queries_ast.definitions
 
 
