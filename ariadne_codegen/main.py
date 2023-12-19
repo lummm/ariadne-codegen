@@ -29,12 +29,17 @@ from .settings import Strategy
     required=False,
 )
 def main(strategy=Strategy.CLIENT, config=None):
-    config_dict = get_config_dict(config)
+    generate_code(config, strategy)
+
+
+def generate_code(config_path: str, strategy=Strategy.CLIENT):
+    config_dict = get_config_dict(config_path)
     if strategy == Strategy.CLIENT:
         client(config_dict)
 
     if strategy == Strategy.GRAPHQL_SCHEMA:
         graphql_schema(config_dict)
+    return
 
 
 def client(config_dict):
