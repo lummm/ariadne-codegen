@@ -118,6 +118,7 @@ class AsyncBaseClient:
 
     def get_data(self, response: httpx.Response) -> Dict[str, Any]:
         if not response.is_success:
+            print("request failed:", response.content)
             raise GraphQLClientHttpError(
                 status_code=response.status_code, response=response
             )
